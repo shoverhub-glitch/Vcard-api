@@ -1,0 +1,30 @@
+name: vcard-api-stack
+
+version: '3.8'
+services:
+  api:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    container_name: vcard-api-app
+    env_file:
+      - ../.env
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../templates:/app/templates
+      - ../thumbnails:/app/thumbnails
+      - ../qrcodes:/app/qrcodes
+
+  nginx:
+    image: nginx:1.25
+    container_name: vcard-api-nginx
+    depends_on:
+      - api
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ../templates:/app/templates:ro
+      - ../thumbnails:/app/thumbnails:ro
+      - ../qrcodes:/app/qrcodes:ro
