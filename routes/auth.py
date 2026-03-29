@@ -14,7 +14,7 @@ from utils.auth import (
     ACCESS_TOKEN_EXPIRE_MINUTES,
 )
 
-router = APIRouter(prefix="/api/auth", tags=["authentication"])
+router = APIRouter(prefix="/auth", tags=["authentication"])
 
 security = HTTPBearer()
 

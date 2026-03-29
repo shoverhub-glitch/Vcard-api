@@ -7,7 +7,7 @@ from database import get_database
 from config import get_settings
 from utils.razorpay_utils import create_order, verify_payment_signature, verify_webhook_signature
 
-router = APIRouter(prefix="/api/payments", tags=["payments"])
+router = APIRouter(prefix="/payments", tags=["payments"])
 
 settings = get_settings()
 

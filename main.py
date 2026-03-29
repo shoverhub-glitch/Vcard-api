@@ -109,10 +109,10 @@ qrcodes_dir = Path("qrcodes")
 qrcodes_dir.mkdir(exist_ok=True)
 app.mount("/qrcodes", StaticFiles(directory="qrcodes"), name="qrcodes")
 
-app.include_router(auth_router)
-app.include_router(templates_router)
-app.include_router(payments_router)
-app.include_router(razorpay_router)
+app.include_router(auth_router, prefix="/api/v1")
+app.include_router(templates_router, prefix="/api/v1")
+app.include_router(payments_router, prefix="/api/v1")
+app.include_router(razorpay_router, prefix="/api/v1")
 
 
 @app.get("/")

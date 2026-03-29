@@ -13,7 +13,7 @@ from utils.cache import get_cached, set_cached, invalidate_cache
 from .auth import get_admin_user
 from schemas.schemas_auth import UserInDB
 
-router = APIRouter(prefix="/api/templates", tags=["templates"])
+router = APIRouter(prefix="/templates", tags=["templates"])
 
 COLLECTION_NAME = "templates"
 THUMBNAILS_DIR = Path("thumbnails")

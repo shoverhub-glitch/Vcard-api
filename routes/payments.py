@@ -10,7 +10,7 @@ import uuid
 from database import get_database
 from schemas.schemas import VerifyPaymentRequest
 
-router = APIRouter(prefix="/api/payments", tags=["manual-payments"])
+router = APIRouter(prefix="/payments", tags=["manual-payments"])
 
 COLLECTION_NAME = "payments"
 QR_CODES_DIR = Path("qrcodes")
