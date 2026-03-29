@@ -19,7 +19,7 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
-logger = logging.getLogger("wcard")
+logger = logging.getLogger("vcard")
 
 settings = get_settings()
 
@@ -58,7 +58,7 @@ async def ensure_indexes():
 
 
 app = FastAPI(
-    title="WCard API",
+    title="VCard API",
     description="Wedding Card Template Management API",
     version="1.0.0",
     lifespan=lifespan,
@@ -117,7 +117,7 @@ app.include_router(razorpay_router, prefix="/api/v1")
 
 @app.get("/")
 async def root():
-    return {"message": "WCard API is running", "docs": "/docs"}
+    return {"message": "VCard API is running"}
 
 
 @app.get("/health")
