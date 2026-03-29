@@ -6,7 +6,18 @@ WORKDIR /app
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+COPY main.py ./
+COPY config.py ./
+COPY database.py ./
+COPY requirements.txt ./
+COPY create_admin.py ./
+COPY routes ./routes
+COPY schemas ./schemas
+COPY utils ./utils
+# Copy static folders only if needed in the image (uncomment if required)
+COPY templates ./templates
+COPY thumbnails ./thumbnails
+COPY qrcodes ./qrcodes
 
 ENV PYTHONUNBUFFERED=1
 
