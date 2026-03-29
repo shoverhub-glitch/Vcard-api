@@ -15,7 +15,8 @@ services:
       - ../templates:/app/templates
       - ../thumbnails:/app/thumbnails
       - ../qrcodes:/app/qrcodes
-
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
   nginx:
     image: nginx:1.25
     container_name: vcard-api-nginx
