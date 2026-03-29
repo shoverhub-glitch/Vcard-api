@@ -12,7 +12,7 @@ if [ "$confirm" != "YES" ]; then
   exit 0
 fi
 
-docker-compose down
+docker compose down
 
 echo "Containers stopped and removed."
 
