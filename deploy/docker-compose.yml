@@ -1,31 +1,37 @@
-name: vcard-api-stack
+version: "3.9"
 
-version: '3.8'
 services:
-  api:
+  vcard-api:
     build:
       context: ..
       dockerfile: deploy/Dockerfile
-    container_name: vcard-api-app
+
+    container_name: vcard-api
+    restart: unless-stopped
+
     env_file:
       - ../.env
-    ports:
-      - "8000:8000"
+
+    expose:
+      - "8000"
+
     volumes:
       - ../templates:/app/templates
       - ../thumbnails:/app/thumbnails
       - ../qrcodes:/app/qrcodes
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-  nginx:
-    image: nginx:1.25
-    container_name: vcard-api-nginx
-    depends_on:
-      - api
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ../templates:/app/templates:ro
-      - ../thumbnails:/app/thumbnails:ro
-      - ../qrcodes:/app/qrcodes:ro
+
+    networks:
+      - shared_network
+
+    mem_limit: 256m
+    cpus: "0.5"
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "2"
+
+networks:
+  shared_network:
+    external: true
